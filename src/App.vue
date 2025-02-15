@@ -1,32 +1,38 @@
 <template>
   <div class="min-h-screen bg-[#053185] flex flex-col relative overflow-hidden">
-    <!-- Gradient overlay at bottom -->
-    <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#0EDDD3]/5 to-transparent"></div>
+    <!-- Updated gradient overlay with pulse -->
+    <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#0EDDD3]/5 to-transparent gradient-pulse"></div>
 
     <main class="container mx-auto px-4 sm:px-8 lg:px-16 flex-grow max-w-[1920px] relative">
       <div class="py-8 sm:py-12 lg:py-16">
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-normal mb-6 sm:mb-8 tracking-tight">
+        <!-- Title with fade in -->
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-normal mb-6 sm:mb-8 tracking-tight fade-in">
           <span class="metallic-text">Unyt</span>
           <br />
           <span class="metallic-text">Accounting</span>
         </h1>
 
+        <!-- Description with delayed fade in -->
         <p
-          class="text-white text-lg sm:text-xl lg:text-2xl max-w-xl sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl font-light leading-relaxed">
+          class="text-white text-lg sm:text-xl lg:text-2xl max-w-xl sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl font-light leading-relaxed fade-in-delay-1">
           Mutual credit accounting systems for DePIN that are immutable, transparent, and backed by productive capacity.
         </p>
 
-        <div class="mt-12 sm:mt-16 lg:mt-20">
+        <!-- Contact section with enhanced animation -->
+        <div class="mt-12 sm:mt-16 lg:mt-20 fade-in-delay-2 highlight-section">
           <p class="text-white text-xl sm:text-2xl lg:text-3xl font-normal">
             Interested in testing?
-            <a href="mailto:info@unyt.co" class="metallic-text hover:opacity-80 transition-opacity duration-300 ml-2"
+            <a
+              href="mailto:info@unyt.co"
+              class="metallic-text hover:opacity-80 transition-all duration-300 ml-2 hover:scale-105"
               >info@unyt.co</a
             >
           </p>
         </div>
       </div>
 
-      <div class="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8">
+      <!-- Releases link with fade in -->
+      <div class="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 fade-in">
         <a
           href="https://github.com/unytco/hfvz-releases/releases"
           target="_blank"
@@ -40,7 +46,8 @@
       </div>
     </main>
 
-    <footer class="mt-auto w-full relative">
+    <!-- Footer with fade in -->
+    <footer class="mt-auto w-full relative fade-in-delay-2">
       <div class="container mx-auto px-4 sm:px-8 lg:px-16 py-6 sm:py-8 lg:py-12 max-w-[1920px] relative">
         <img
           src="@/assets/PBH_logo_white.svg"
@@ -64,6 +71,86 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(14, 221, 211, 0.3);
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+}
+
+/* Updated fade in animations with more emphasis on the third section */
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in-delay-1 {
+  animation: fadeIn 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.fade-in-delay-2 {
+  animation: fadeInScale 1s ease-out 0.4s forwards;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Add a subtle highlight effect for the testing section */
+.highlight-section {
+  position: relative;
+}
+
+.highlight-section::after {
+  content: "";
+  position: absolute;
+  inset: -2rem;
+  background: radial-gradient(circle at center, rgba(14, 221, 211, 0.1) 0%, transparent 70%);
+  z-index: -1;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.6s forwards;
+}
+
+/* Subtle glow pulse for the bottom gradient */
+.gradient-pulse {
+  animation: gradientPulse 4s ease-in-out infinite;
+}
+
+@keyframes gradientPulse {
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 
 body {
